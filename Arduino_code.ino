@@ -48,31 +48,40 @@ void loop() {
   Serial.println('\n');
   Serial.println(zd);
 
-if(xd>9.00||xd<0.00||((xd<6.00&&xd>3.00))&&(yd<1.50&&yd>(-1.50))){
+  if(xd>9.00||xd<0.00||((xd<6.00&&xd>3.00))&&(yd<1.50&&yd>(-1.50))){//STOPPING CONDITION
                         analogWrite(LEFT_M1, 0);
                         analogWrite(LEFT_M2, 0);
                         analogWrite(RIGHT_M1, 0);
                         analogWrite(RIGHT_M2, 0);      
-  }
-  else if(xd<3.00&&(yd<1.50&&yd>(-1.50))){
+   }
+  else if(xd<3.00&&(yd<1.50&&yd>(-1.50))){//FORWARD MOVEMENT
+    if(xd>0.00){
                         analogWrite(LEFT_M1, 0);
                         analogWrite(LEFT_M2, (4.50-xd)*60);
                         analogWrite(RIGHT_M1, 0);
                         analogWrite(RIGHT_M2, (4.50-xd)*60);
+      
+      }
+    else if(xd<0.00){
+                        analogWrite(LEFT_M1, 0);
+                        analogWrite(LEFT_M2, (4.50)*60);
+                        analogWrite(RIGHT_M1, 0);
+                        analogWrite(RIGHT_M2, (4.50)*60);
+      }
     }
-  else if(xd>6.00&&(yd<1.50&&yd>(-1.50))){
+  else if(xd>6.00&&(yd<1.50&&yd>(-1.50))){//REVERSE MOVEMENT
                         analogWrite(LEFT_M2, 0);
                         analogWrite(LEFT_M1, (xd-4.5)*60);
                         analogWrite(RIGHT_M2, 0);
                         analogWrite(RIGHT_M1, (xd-4.5)*60);
     }
-  else if((xd<6.00&&xd>3.00)&&(yd>1.50)){
+  else if((xd<6.00&&xd>3.00)&&(yd>1.50)){//SHARP RIGHT TURN
                         analogWrite(LEFT_M1, 0);
                         analogWrite(LEFT_M2, 150);
                         analogWrite(RIGHT_M1, 150);
                         analogWrite(RIGHT_M2, 0);
     }
-  else if((xd<6.00&&xd>3.00)&&(yd<(-1.50))){
+  else if((xd<6.00&&xd>3.00)&&(yd<(-1.50))){//SHARP LEFT TURN
                         analogWrite(LEFT_M1, 150);
                         analogWrite(LEFT_M2, 0);
                         analogWrite(RIGHT_M1, 0);
@@ -134,5 +143,5 @@ if(xd>9.00||xd<0.00||((xd<6.00&&xd>3.00))&&(yd<1.50&&yd>(-1.50))){
                         analogWrite(RIGHT_M2, (xd-4.50)*40-70);       
       }
     } 
-    
-  }}
+  }
+}
