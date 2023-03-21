@@ -12,7 +12,7 @@ void setup()
   Serial.begin(9600);
   WiFi.disconnect();
   delay(2000);
-  WiFi.begin("Aditya", "12345678");
+  WiFi.begin("Wifi", "12345678");
   while ((!(WiFi.status() == WL_CONNECTED))) {
     Serial.print("...");
     delay(300);
